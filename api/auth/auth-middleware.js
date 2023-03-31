@@ -1,6 +1,8 @@
 const { JWT_SECRET } = require("../secrets"); // use this secret!
 
 const restricted = (req, res, next) => {
+  next();
+
   /*
     If the user does not provide a token in the Authorization header:
     status 401
@@ -19,6 +21,7 @@ const restricted = (req, res, next) => {
 }
 
 const only = role_name => (req, res, next) => {
+  next();
   /*
     If the user does not provide a token in the Authorization header with a role_name
     inside its payload matching the role_name passed to this function as its argument:
@@ -33,6 +36,7 @@ const only = role_name => (req, res, next) => {
 
 
 const checkUsernameExists = (req, res, next) => {
+  next();
   /*
     If the username in req.body does NOT exist in the database
     status 401
@@ -44,6 +48,7 @@ const checkUsernameExists = (req, res, next) => {
 
 
 const validateRoleName = (req, res, next) => {
+  next();
   /*
     If the role_name in the body is valid, set req.role_name to be the trimmed string and proceed.
 
