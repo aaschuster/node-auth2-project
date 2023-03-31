@@ -44,7 +44,7 @@ router.post("/login", checkUsernameExists, (req, res, next) => {
         })
       } else next({
         status: 401,
-        message: "Invalid login credentials."
+        message: "Invalid credentials"
       })
     })
     .catch(next);
@@ -74,7 +74,7 @@ router.post("/login", checkUsernameExists, (req, res, next) => {
 function buildToken(user) {
   return jwt.sign(
     {
-      subject: user.id,
+      subject: user.user_id,
       username: user.username,
       role_name: user.role_name
     },
